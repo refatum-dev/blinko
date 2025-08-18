@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production dotenv -e ../.env -- bun --env ../dist/index.js"
   },
   "dependencies": {
+    "ai": "5.0.15",
     "@ai-sdk/anthropic": "^2.0.4",
     "@ai-sdk/azure": "latest",
     "@ai-sdk/google": "^2.0.6",
