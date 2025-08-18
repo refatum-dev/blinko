@@ -28,6 +28,7 @@ import { getGlobalConfig } from '@server/routerTrpc/config';
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
+import { PerplexityModelProvider } from './providers/perplexity';
 
 export class AiModelFactory {
   //metadata->>'id'
@@ -271,6 +272,8 @@ export class AiModelFactory {
             return createProviderResult(new GeminiModelProvider({ globalConfig }));
           case 'OpenRouter':
             return createProviderResult(new OpenRouterModelProvider({ globalConfig }));
+          case 'Perplexity':
+            return createProviderResult(new PerplexityModelProvider({ globalConfig }));
           default:
             throw new Error(`Unsupported AI model provider: ${globalConfig.aiModelProvider}`);
         }
