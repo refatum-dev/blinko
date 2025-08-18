@@ -240,6 +240,15 @@ export class AiStore implements Store {
       ),
     },
     {
+      label: 'Perplexity',
+      value: 'Perplexity',
+      icon: (
+        <div className="bg-black w-[22x] h-[22px] rounded-full">
+          <Image src="/images/perplexity.png" width={20} height={20} />
+        </div>
+      ),
+    },
+    {
       label: 'AzureOpenAI',
       value: 'AzureOpenAI',
       icon: <Image src="/images/azure.png" width={20} height={20} />,
@@ -290,6 +299,12 @@ export class AiStore implements Store {
 
   modelSelectUILabel = {
     OpenAI: {
+      modelTitle: i18n.t('ai-model'),
+      modelTooltip: i18n.t('ai-model-tooltip'),
+      endpointTitle: i18n.t('api-endpoint'),
+      endpointTooltip: i18n.t('must-start-with-http-s-or-use-api-openai-as-default'),
+    },
+    Perplexity: {
       modelTitle: i18n.t('ai-model'),
       modelTooltip: i18n.t('ai-model-tooltip'),
       endpointTitle: i18n.t('api-endpoint'),
