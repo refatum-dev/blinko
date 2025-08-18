@@ -55,5 +55,3 @@ services:
     networks:
       - blinko-network
 
-volumes:
-  blinko-db: {}
