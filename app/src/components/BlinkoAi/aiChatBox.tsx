@@ -116,7 +116,7 @@ const UserMessage = ({ content, time, id, onEdit, shareMode = false }: {
   );
 };
 
-const AiMessage = ({ content, withoutAnimation = false, withStreamAnimation = false, id, metadata, shareMode = false }:
+const ModelMessage = ({ content, withoutAnimation = false, withStreamAnimation = false, id, metadata, shareMode = false }:
   {
     content: string, withoutAnimation?: boolean, withStreamAnimation?: boolean, id?: number,
     metadata?: AssisantMessageMetadata,
@@ -336,7 +336,7 @@ export const BlinkoChatBox = observer(({ shareMode = false }: { shareMode?: bool
                   />
                 )}
                 {item.role == 'assistant' && (
-                  <AiMessage
+                  <ModelMessage
                     key={item.content}
                     id={item.id}
                     metadata={item.metadata as AssisantMessageMetadata}
@@ -364,7 +364,7 @@ export const BlinkoChatBox = observer(({ shareMode = false }: { shareMode?: bool
             )
           }
 
-          <AiMessage
+          <ModelMessage
             key="streaming-message"
             content={aiStore.currentMessageResult.content}
             withStreamAnimation
