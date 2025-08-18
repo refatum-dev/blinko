@@ -54,7 +54,7 @@ export class AiStore implements Store {
   currentMessageResult: currentMessageResult = {
     id: 0,
     notes: [],
-    usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
+    usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
     fristCharDelay: 0,
     toolcall: [],
     content: '',
@@ -128,12 +128,12 @@ export class AiStore implements Store {
           if (item.notes) {
             this.currentMessageResult.notes = item.notes;
           } else {
-            if (item.chunk.type == 'text-delta') {
+            if (item.chunk.type == 'text') {
               if (isFristChunk) {
                 this.currentMessageResult.fristCharDelay = Date.now() - startTime;
                 isFristChunk = false;
               }
-              this.currentMessageResult.content += item.chunk.textDelta;
+              this.currentMessageResult.content += item.chunk.text;
             }
           }
         }
@@ -358,9 +358,9 @@ export class AiStore implements Store {
       );
       for await (const item of res) {
         // console.log(item)
-        if (item.type == 'text-delta') {
+        if (item.type == 'text') {
           //@ts-ignore
-          this.writingResponseText += item.textDelta;
+          this.writingResponseText += item.text;
         }
         this.scrollTicker++;
       }
@@ -441,7 +441,7 @@ export class AiStore implements Store {
       notes: [],
       content: '',
       toolcall: [],
-      usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
+      usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
       fristCharDelay: 0,
       id: 0,
     };

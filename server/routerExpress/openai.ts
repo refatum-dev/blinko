@@ -98,7 +98,7 @@ router.post('/chat/completions', async (req, res) => {
 
         for await (const item of resStream) {
           if (item.notes) {
-          } else if (item.chunk?.type === 'text-delta') {
+          } else if (item.chunk?.type === 'text') {
             res.write(`data: ${JSON.stringify({
               id,
               object: 'chat.completion.chunk',
@@ -136,8 +136,8 @@ router.post('/chat/completions', async (req, res) => {
       });
 
       for await (const item of resStream) {
-        if (item.chunk?.type === 'text-delta') {
-          fullResponse += item.chunk.textDelta;
+        if (item.chunk?.type === 'text') {
+          fullResponse += item.chunk.text;
         }
       }
 

@@ -2,7 +2,7 @@ import { MarkdownTextSplitter, TokenTextSplitter } from '@langchain/textsplitter
 import { GlobalConfig } from '@shared/lib/types';
 import { BufferLoader } from 'langchain/document_loaders/fs/buffer';
 // import { OpenAIWhisperAudio } from '@langchain/community/document_loaders/fs/openai_whisper_audio';
-import { ProviderV2, LanguageModelV2, EmbeddingModelV2 } from '@ai-sdk/provider';
+import { ProviderV2, LanguageModelV2, EmbeddingModelV2 } from 'ai';
 import { VECTOR_DB_FILE_PATH } from '@shared/lib/sharedConstant';
 import { AiModelFactory } from '../aiModelFactory';
 import { createOpenAI } from '@ai-sdk/openai';

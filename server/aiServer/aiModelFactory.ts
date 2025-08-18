@@ -9,7 +9,7 @@ import { LibSQLVector } from "@mastra/libsql";
 import { DeepSeekModelProvider } from './providers/deepseek';
 import dayjs from 'dayjs';
 import { Agent, Mastra } from '@mastra/core';
-import { LanguageModelV2, EmbeddingModelV2 } from '@ai-sdk/provider';
+import { LanguageModelV2, EmbeddingModelV2 } from 'ai';
 import { MarkdownTextSplitter, TokenTextSplitter } from '@langchain/textsplitters';
 import { embed } from 'ai';
 import { _ } from '@shared/lib/lodash';

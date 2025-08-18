@@ -1,4 +1,4 @@
-import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from 'ai';
 import { AiBaseModelProvider } from '.';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 

@@ -1,6 +1,6 @@
 import { AiBaseModelProvider } from ".";
 import { AzureOpenAIProvider, createAzure } from "@ai-sdk/azure";
-import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from 'ai';
 
 export class AzureOpenAIModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {

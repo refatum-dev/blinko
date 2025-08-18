@@ -69,7 +69,7 @@ export const aiRouter = router({
     .mutation(async function* ({ input, ctx }) {
       try {
         const { question, conversations, withTools = false, withOnline = false, withRAG = true, systemPrompt } = input
-        let _conversations = conversations as CoreMessage[]
+        let _conversations = conversations as ModelMessage[]
         const { result: responseStream, notes } = await AiService.completions({
           question,
           conversations: _conversations,

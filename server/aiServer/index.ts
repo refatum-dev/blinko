@@ -227,7 +227,7 @@ export class AiService {
     ctx,
   }: {
     question: string;
-    conversations: CoreMessage[];
+    conversations: ModelMessage[];
     withTools?: boolean;
     withRAG?: boolean;
     withOnline?: boolean;

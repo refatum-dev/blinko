@@ -1,6 +1,6 @@
 import { AiBaseModelProvider } from '.';
 import { createAnthropic } from '@ai-sdk/anthropic';
-import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from 'ai';
 
 export class AnthropicModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {

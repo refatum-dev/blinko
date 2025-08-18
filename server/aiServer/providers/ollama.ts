@@ -1,7 +1,7 @@
 import { BufferLoader } from 'langchain/document_loaders/fs/buffer';
 import { createOllama, OllamaProvider } from 'ollama-ai-provider';
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from 'ai';
 
 export class OllamaModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {

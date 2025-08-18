@@ -1,6 +1,6 @@
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from 'ai';
 
 export class OpenRouterModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
