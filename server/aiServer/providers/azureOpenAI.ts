@@ -1,7 +1,6 @@
 import { AiBaseModelProvider } from ".";
 import { AzureOpenAIProvider, createAzure } from "@ai-sdk/azure";
-import { EmbeddingMode, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
-import { encodeBaseUrl } from "@libsql/core/uri";
+import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class AzureOpenAIModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
@@ -22,7 +21,7 @@ export class AzureOpenAIModelProvider extends AiBaseModelProvider {
     );
   }
 
-  protected getEmbeddings(): EmbeddingMode<string> {
+  protected getEmbeddings(): EmbeddingModelV2<string> {
     //Custom implementation for Azure OpenAI embeddings
     const config = {
       apiKey: this.globalConfig.embeddingApiKey,
