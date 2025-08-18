@@ -1,13 +1,13 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV1, ProviderV1 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class OpenAIModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
     super({ globalConfig });
   }
 
-  protected createProvider(): ProviderV1 {
+  protected createProvider(): ProviderV2 {
     return createOpenAI({
       apiKey: this.globalConfig.aiApiKey,
       baseURL: this.globalConfig.aiApiEndpoint || undefined,
@@ -16,7 +16,7 @@ export class OpenAIModelProvider extends AiBaseModelProvider {
     });
   }
 
-  protected getLLM(): LanguageModelV1 {
+  protected getLLM(): LanguageModelV2 {
     return this.provider.languageModel(this.globalConfig.aiModel ?? 'gpt-3.5-turbo');
   }
 

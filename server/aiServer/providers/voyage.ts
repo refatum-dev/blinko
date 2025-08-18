@@ -1,4 +1,4 @@
-import { EmbeddingModelV1, LanguageModelV1, ProviderV1 } from '@ai-sdk/provider';
+import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 import { AiBaseModelProvider } from '.';
 import { createVoyage } from 'voyage-ai-provider';
 
@@ -7,18 +7,18 @@ export class VoyageModelProvider extends AiBaseModelProvider {
     super({ globalConfig });
   }
 
-  protected createProvider(): ProviderV1 {
+  protected createProvider(): ProviderV2 {
     return createVoyage({
       apiKey: this.globalConfig.aiApiKey,
       // fetch: this.proxiedFetch
     });
   }
 
-  protected getLLM(): LanguageModelV1 {
+  protected getLLM(): LanguageModelV2 {
     return this.provider.languageModel(this.globalConfig.aiModel ?? 'voyage-3');
   }
 
-  protected getEmbeddings(): EmbeddingModelV1<string> {
+  protected getEmbeddings(): EmbeddingModelV2<string> {
     if (this.globalConfig.embeddingApiKey) {
       let overrideProvider = createVoyage({
         apiKey: this.globalConfig.embeddingApiKey,

@@ -1,10 +1,6 @@
 import { AiBaseModelProvider } from ".";
 import { AzureOpenAIProvider, createAzure } from "@ai-sdk/azure";
-import {
-  EmbeddingModelV1,
-  LanguageModelV1,
-  ProviderV1,
-} from "@ai-sdk/provider";
+import { EmbeddingMode, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 import { encodeBaseUrl } from "@libsql/core/uri";
 
 export class AzureOpenAIModelProvider extends AiBaseModelProvider {
@@ -12,7 +8,7 @@ export class AzureOpenAIModelProvider extends AiBaseModelProvider {
     super({ globalConfig });
   }
 
-  protected createProvider(): ProviderV1 {
+  protected createProvider(): ProviderV2 {
     return createAzure({
       apiKey: this.globalConfig.aiApiKey,
       baseURL: this.globalConfig.aiApiEndpoint || undefined,
@@ -20,13 +16,13 @@ export class AzureOpenAIModelProvider extends AiBaseModelProvider {
     });
   }
 
-  protected getLLM(): LanguageModelV1 {
+  protected getLLM(): LanguageModelV2 {
     return (this.provider as AzureOpenAIProvider).languageModel(
       this.globalConfig.aiModel ?? "gpt-3.5-turbo"
     );
   }
 
-  protected getEmbeddings(): EmbeddingModelV1<string> {
+  protected getEmbeddings(): EmbeddingMode<string> {
     //Custom implementation for Azure OpenAI embeddings
     const config = {
       apiKey: this.globalConfig.embeddingApiKey,

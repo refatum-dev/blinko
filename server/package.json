@@ -11,7 +11,6 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.4",
     "@ai-sdk/azure": "latest",
-    "@ai-sdk/deepseek": "^1.0.7",
     "@ai-sdk/google": "^2.0.6",
     "@ai-sdk/openai": "latest",
     "@ai-sdk/xai": "^2.0.7",

@@ -1,20 +1,20 @@
 import { AiBaseModelProvider } from '.';
-import { createDeepSeek } from '@ai-sdk/deepseek';
-import { LanguageModelV1, ProviderV1 } from '@ai-sdk/provider';
+import { createOpenAI } from '@ai-sdk/openai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class DeepSeekModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
     super({ globalConfig });
   }
 
-  protected createProvider(): ProviderV1 {
-    return createDeepSeek({
+  protected createProvider(): ProviderV2 {
+    return createOpenAI({
       apiKey: this.globalConfig.aiApiKey,
       // fetch: this.proxiedFetch
     });
   }
 
-  protected getLLM(): LanguageModelV1 {
-    return this.provider.languageModel(this.globalConfig.aiModel ?? 'deepseek-v3');
+  protected getLLM(): LanguageModelV2 {
+    return this.provider.languageModel(this.globalConfig.aiModel ?? 'gpt-4o');
   }
 }

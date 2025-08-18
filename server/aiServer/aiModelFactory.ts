@@ -9,7 +9,7 @@ import { LibSQLVector } from "@mastra/libsql";
 import { DeepSeekModelProvider } from './providers/deepseek';
 import dayjs from 'dayjs';
 import { Agent, Mastra } from '@mastra/core';
-import { LanguageModelV1, EmbeddingModelV1 } from '@ai-sdk/provider';
+import { LanguageModelV2, EmbeddingModelV2 } from '@ai-sdk/provider';
 import { MarkdownTextSplitter, TokenTextSplitter } from '@langchain/textsplitters';
 import { embed } from 'ai';
 import { _ } from '@shared/lib/lodash';
@@ -247,9 +247,9 @@ export class AiModelFactory {
       `,
       async () => {
         const createProviderResult = async (provider: any) => ({
-          LLM: (await provider.LLM()) as LanguageModelV1,
+          LLM: (await provider.LLM()) as LanguageModelV2,
           VectorStore: (await provider.VectorStore()) as LibSQLVector,
-          Embeddings: (await provider.Embeddings()) as EmbeddingModelV1<string>,
+          Embeddings: (await provider.Embeddings()) as EmbeddingModelV2<string>,
           MarkdownSplitter: provider.MarkdownSplitter() as MarkdownTextSplitter,
           TokenTextSplitter: provider.TokenTextSplitter() as TokenTextSplitter,
           provider: provider as AiBaseModelProvider

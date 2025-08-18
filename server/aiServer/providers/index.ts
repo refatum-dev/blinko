@@ -2,7 +2,7 @@ import { MarkdownTextSplitter, TokenTextSplitter } from '@langchain/textsplitter
 import { GlobalConfig } from '@shared/lib/types';
 import { BufferLoader } from 'langchain/document_loaders/fs/buffer';
 // import { OpenAIWhisperAudio } from '@langchain/community/document_loaders/fs/openai_whisper_audio';
-import { ProviderV1, LanguageModelV1, EmbeddingModelV1 } from '@ai-sdk/provider';
+import { ProviderV2, LanguageModelV2, EmbeddingModelV2 } from '@ai-sdk/provider';
 import { VECTOR_DB_FILE_PATH } from '@shared/lib/sharedConstant';
 import { AiModelFactory } from '../aiModelFactory';
 import { createOpenAI } from '@ai-sdk/openai';
@@ -13,7 +13,7 @@ let vectorStore: LibSQLVector;
 
 export abstract class AiBaseModelProvider {
   globalConfig: GlobalConfig;
-  provider!: ProviderV1;
+  provider!: ProviderV2;
   protected proxiedFetch: typeof fetch | undefined = undefined;
   protected ready: Promise<void>;
 
@@ -26,7 +26,7 @@ export abstract class AiBaseModelProvider {
     });
   }
 
-  async languageModel(modelId: string): Promise<LanguageModelV1> {
+  async languageModel(modelId: string): Promise<LanguageModelV2> {
     await this.ready;
     return this.provider.languageModel(modelId);
   }
@@ -50,12 +50,12 @@ export abstract class AiBaseModelProvider {
   /**
    * Create the provider instance - to be implemented by child classes
    */
-  protected abstract createProvider(): ProviderV1;
+  protected abstract createProvider(): ProviderV2;
 
   /**
    * Get the language model - wait for initialization to complete
    */
-  async LLM(): Promise<LanguageModelV1> {
+  async LLM(): Promise<LanguageModelV2> {
     await this.ready;
     return this.getLLM();
   }
@@ -63,12 +63,12 @@ export abstract class AiBaseModelProvider {
   /**
    * Actual implementation of LLM to be overridden by child classes
    */
-  protected abstract getLLM(): LanguageModelV1;
+  protected abstract getLLM(): LanguageModelV2;
 
   /**
    * Get the embedding model - wait for initialization to complete
    */
-  async Embeddings(): Promise<EmbeddingModelV1<string>> {
+  async Embeddings(): Promise<EmbeddingModelV2<string>> {
     await this.ready;
 
     // Check if child class provides custom embeddings implementation
@@ -92,11 +92,11 @@ export abstract class AiBaseModelProvider {
     } catch (error) {
       console.log(error, 'ERROR Create Embedding model');
       // throw error;
-      return null as unknown as EmbeddingModelV1<string>;
+      return null as unknown as EmbeddingModelV2<string>;
     }
   }
 
-  async rerankModel(): Promise<LanguageModelV1 | null> {
+  async rerankModel(): Promise<LanguageModelV2 | null> {
     await this.ready;
     try {
       if (!this.globalConfig.rerankModel) {
@@ -124,7 +124,7 @@ export abstract class AiBaseModelProvider {
   /**
    * Optional custom embeddings implementation for child classes
    */
-  protected getEmbeddings?(): EmbeddingModelV1<string>;
+  protected getEmbeddings?(): EmbeddingModelV2<string>;
 
   public MarkdownSplitter(): MarkdownTextSplitter {
     return new MarkdownTextSplitter({

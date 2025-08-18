@@ -1,13 +1,13 @@
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV1, ProviderV1 } from '@ai-sdk/provider';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class OpenRouterModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
     super({ globalConfig });
   }
 
-  protected createProvider(): any {
+  protected createProvider(): ProviderV2 {
     return createOpenRouter({
       apiKey: this.globalConfig.aiApiKey, 
       // baseURL: this.globalConfig.aiApiEndpoint,
@@ -15,7 +15,7 @@ export class OpenRouterModelProvider extends AiBaseModelProvider {
     });
   }
 
-  protected getLLM(): LanguageModelV1 {
+  protected getLLM(): LanguageModelV2 {
     return this.provider.languageModel(this.globalConfig.aiModel ?? 'openai/gpt-3.5-turbo');
   }
 
