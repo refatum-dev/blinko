@@ -242,11 +242,7 @@ export class AiStore implements Store {
     {
       label: 'Perplexity',
       value: 'Perplexity',
-      icon: (
-        <div className="bg-black w-[22x] h-[22px] rounded-full">
-          <Image src="/images/perplexity.png" width={20} height={20} />
-        </div>
-      ),
+      icon: <Image src="/images/perplexity.png" width={20} height={20} />,
     },
     {
       label: 'AzureOpenAI',

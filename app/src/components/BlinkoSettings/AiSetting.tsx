@@ -252,7 +252,19 @@ export const AiSetting = observer(() => {
             }
             break;
           }
-
+          case 'Perplexity': {
+            modelList = [
+              { label: 'sonar', value: 'sonar' },
+              { label: 'sonar-pro', value: 'sonar-pro' },
+              { label: 'sonar-deep-research', value: 'sonar-deep-research' },
+              { label: 'sonar-reasoning', value: 'sonar-reasoning' },
+              { label: 'sonar-reasoning-pro', value: 'sonar-reasoning-pro' },
+            ];
+            this.aiModelSelect.save(modelList);
+            // this.embeddingModelSelect.save(modelList);
+            // this.rerankModelSelect.save(modelList);
+            break;
+          }
           default: {
             try {
               const endpoint = new URL(blinko.config.value?.aiApiEndpoint!);
@@ -454,7 +466,8 @@ export const AiSetting = observer(() => {
 
         {(blinko.config.value?.aiModelProvider == 'OpenAI'
           || blinko.config.value?.aiModelProvider == 'AzureOpenAI'
-          || blinko.config.value?.aiModelProvider == 'Ollama') && (
+          || blinko.config.value?.aiModelProvider == 'Ollama'
+          || blinko.config.value?.aiModelProvider == 'Perplexity') && (
             <Item
               type={isPc ? 'row' : 'col'}
               leftContent={
@@ -464,7 +477,7 @@ export const AiSetting = observer(() => {
                     : <div className="text-desc text-xs">{
                       (() => {
                         try {
-                          const baseUrl = store.apiEndPoint?.trim() ? store.apiEndPoint : 'https://api.openai.com';
+                          const baseUrl = store.apiEndPoint?.trim() ? store.apiEndPoint : blinko.config.value?.aiModelProvider == 'Perplexity' ? 'https://api.perplexity.ai' : 'https://api.openai.com';
                           const urlWithProtocol = baseUrl.startsWith('http://') || baseUrl.startsWith('https://')
                             ? baseUrl
                             : `https://${baseUrl}`;
@@ -472,7 +485,7 @@ export const AiSetting = observer(() => {
                           // Parse the URL to preserve any paths the user has entered
                           const url = new URL(urlWithProtocol);
 
-                          const postfix = blinko.config.value?.aiModelProvider == 'AzureOpenAI' ? `/${blinko.config.value?.aiModel ? blinko.config.value?.aiModel : "deployment-name"}/chat/completions${blinko.config.value?.aiApiVersion ? "?api-version=" + blinko.config.value?.aiApiVersion : ""}` : '/chat/completions';
+                          const postfix = blinko.config.value?.aiModelProvider == 'AzureOpenAI' ? `/${blinko.config.value?.aiModel ? blinko.config.value?.aiModel : "deployment-name"}/chat/completions${blinko.config.value?.aiApiVersion ? "?api-version=" + blinko.config.value?.aiApiVersion : ""}` : 'Perplexity' ? '/chat/completions' : '/v1/chat/completions';
 
                           // Check if the URL already contains a path
                           if (url.pathname === '/' || url.pathname === '') {
@@ -484,7 +497,7 @@ export const AiSetting = observer(() => {
                             return `${url.origin}${path}${postfix}`;
                           }
                         } catch (e) {
-                          return 'https://api.openai.com/chat/completions';
+                          return 'https://api.openai.com/v1/chat/completions';
                         }
                       })()
                     }</div>}
