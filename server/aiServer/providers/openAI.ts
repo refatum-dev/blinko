@@ -1,6 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV2, ProviderV2 } from 'ai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class OpenAIModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {

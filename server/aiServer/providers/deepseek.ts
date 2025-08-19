@@ -1,6 +1,6 @@
 import { AiBaseModelProvider } from '.';
 import { createOpenAI } from '@ai-sdk/openai';
-import { LanguageModelV2, ProviderV2 } from 'ai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 
 export class DeepSeekModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {

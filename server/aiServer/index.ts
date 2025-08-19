@@ -15,7 +15,7 @@ import { CreateNotification } from '../routerTrpc/notification';
 import { NotificationType } from '@shared/lib/prismaZodType';
 import { CoreMessage } from '@mastra/core';
 import { MDocument } from '@mastra/rag';
-import { embedMany } from 'ai';
+import { ModelMessage, embedMany } from 'ai';
 import { RebuildEmbeddingJob } from '../jobs/rebuildEmbeddingJob';
 import { userCaller } from '../routerTrpc/_app';
 

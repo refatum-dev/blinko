@@ -1,4 +1,4 @@
-import { LanguageModelV2, ProviderV2 } from 'ai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 import { AiBaseModelProvider } from '.';
 import { createXai } from '@ai-sdk/xai';
 

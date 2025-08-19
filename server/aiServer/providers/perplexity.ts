@@ -1,4 +1,4 @@
-import { LanguageModelV2, ProviderV2 } from 'ai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 import { createPerplexity } from '@ai-sdk/perplexity';
 import { AiBaseModelProvider } from '.';
 

@@ -1,7 +1,6 @@
 import { cache } from '@shared/lib/cache';
 import { AzureOpenAIModelProvider } from './providers/azureOpenAI';
 import { OpenAIModelProvider } from './providers/openAI';
-import { OllamaModelProvider } from './providers/ollama';
 import { AnthropicModelProvider } from './providers/anthropic';
 import { upsertBlinkoTool } from './tools/createBlinko';
 import { createCommentTool } from './tools/createComment';
@@ -9,7 +8,7 @@ import { LibSQLVector } from "@mastra/libsql";
 import { DeepSeekModelProvider } from './providers/deepseek';
 import dayjs from 'dayjs';
 import { Agent, Mastra } from '@mastra/core';
-import { LanguageModelV2, EmbeddingModelV2 } from 'ai';
+import { LanguageModelV2, EmbeddingModelV2 } from '@ai-sdk/provider';
 import { MarkdownTextSplitter, TokenTextSplitter } from '@langchain/textsplitters';
 import { embed } from 'ai';
 import { _ } from '@shared/lib/lodash';
@@ -260,8 +259,6 @@ export class AiModelFactory {
             return createProviderResult(new OpenAIModelProvider({ globalConfig }));
           case 'AzureOpenAI':
             return createProviderResult(new AzureOpenAIModelProvider({ globalConfig }));
-          case 'Ollama':
-            return createProviderResult(new OllamaModelProvider({ globalConfig }));
           case 'DeepSeek':
             return createProviderResult(new DeepSeekModelProvider({ globalConfig }));
           case 'Anthropic':

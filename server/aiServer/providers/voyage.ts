@@ -1,4 +1,4 @@
-import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from 'ai';
+import { EmbeddingModelV2, LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
 import { AiBaseModelProvider } from '.';
 import { createVoyage } from 'voyage-ai-provider';
 

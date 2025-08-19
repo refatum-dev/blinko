@@ -1,6 +1,6 @@
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { AiBaseModelProvider } from '.';
-import { LanguageModelV2, ProviderV2 } from 'ai';
+import { LanguageModelV2, ProviderV2 } from '@ai-sdk/provider';
+import { createOpenAI } from '@ai-sdk/openai';
 
 export class OpenRouterModelProvider extends AiBaseModelProvider {
   constructor({ globalConfig }) {
@@ -8,8 +8,8 @@ export class OpenRouterModelProvider extends AiBaseModelProvider {
   }
 
   protected createProvider(): ProviderV2 {
-    return createOpenRouter({
-      apiKey: this.globalConfig.aiApiKey, 
+    return createOpenAI({
+      apiKey: this.globalConfig.aiApiKey,
       // baseURL: this.globalConfig.aiApiEndpoint,
       // fetch: this.proxiedFetch
     });
